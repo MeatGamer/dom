@@ -45,9 +45,7 @@ window.onload = async () => {
     async function renderPosts(posts) {
         postsElement.innerHTML = ''
 
-        posts.slice(0, limitInput.value).forEach(post => {
-            const postElement = document.createElement
-        })
+        
 
         posts.forEach(post => {
         const postElement = document.createElement('div');
