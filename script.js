@@ -42,41 +42,22 @@ window.onload = async () => {
 
    
 
-    async function renderPosts(posts) {
-        postsElement.innerHTML = ''
+    async function renderPosts(posts){
+            postsElement.innerHTML = '';
+            posts.slice(0, limitInput.value).forEach(post => {
+                const postelement = document.createElement('div');
+                postelement.classList.add('post');
 
-        posts.slice(0, limitInput.value).forEach(post => {
-            const postElement = document.createElement('post')
-            postElement.classList.add('post')
-        })
+                const user = getUserByID(users, post.userId)
 
-            posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.classList.add('post');
-
-        const user = getUserByID(users, post.userId);
-
-        postElement.innerHTML = `
-            <p>${post.title}</p>
-            <p>${post.body}</p>
-            <p>${user.name}</p>
-        `;
-        postsElement.append(postElement);
-    });
+                postelement.innerHTML = `
+                <h3>${post.title}</h3>
+                <p>${post.body}</p>
+                <p>${user.name}</p>
+                `;
+                postsElement.append(postelement)
+            })
     }
 
-    // posts.forEach(post => {
-    //     const postElement = document.createElement('div');
-    //     postElement.classList.add('post');
-
-    //     const user = getUserByID(users, post.userId);
-
-    //     postElement.innerHTML = `
-    //         <p>${post.title}</p>
-    //         <p>${post.body}</p>
-    //         <p>${user.name}</p>
-    //     `;
-    //     postsElement.append(postElement);
-    // });
 }
 
