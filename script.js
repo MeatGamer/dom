@@ -18,8 +18,8 @@ async function getUsers() {
 
 async function getComments() {
     let response = await fetch('https://jsonplaceholder.typicode.com/comments')
-    reposne = await reposne.json()
-    return reposne
+    response = await response.json()
+    return response
 }
 
 function getUserByID(users, id) {
@@ -38,7 +38,7 @@ window.onload = async () => {
     const limitInput = document.getElementById("limitPosts")
     const commentElement = document.getElementById("comments")
 
-    renderPosts(posts)
+    renderPosts(posts, comments)
 
     searchBtn.addEventListener('click', () => {
         const filteredPosts = filterByName(searchByName.value)
@@ -51,7 +51,7 @@ window.onload = async () => {
 
    
 
-    async function renderPosts(posts){
+    async function renderPosts(posts, comments){
             postsElement.innerHTML = '';
             posts.slice(0, limitInput.value).forEach(post => {
                 const postelement = document.createElement('div');
@@ -59,25 +59,13 @@ window.onload = async () => {
 
                 const user = getUserByID(users, post.userId)
 
-                const postComments = comments.filter(comment => comment.postId == post.id);
-        
-                postComments.forEach(comment => {
-                    postelement.innerHTML += `
-                        <p>${comment.name}</p>
-                        <p>${comment.email}</p>
-                        <p>${comment.body}</p>
-                    `;
-                });
-
-        
                 postelement.innerHTML = `
                 <h3>${post.title}</h3>
                 <p>${post.body}</p>
                 <p>${user.name}</p>
-                <p>${user.email}</p>
-                ${commentsHTML}
+                <p>${comments.email}</p>
+            
                 `;
-                
                 postsElement.append(postelement)
             })
     }
