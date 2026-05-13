@@ -59,16 +59,16 @@ window.onload = async () => {
 
                 const user = getUserByID(users, post.userId)
 
-                const postComments = comments.filter(comment => comment.postId == post.id)
-
-                let commentsHTML = "";
+                const postComments = comments.filter(comment => comment.postId == post.id);
+        
                 postComments.forEach(comment => {
-                    commentsHTML += `
-                    <p>${comment.name}</p>
-                    <p>${comment.email}</p>
-                    <p>${comment.body}</p>
+                    postelement.innerHTML += `
+                        <p>${comment.name}</p>
+                        <p>${comment.email}</p>
+                        <p>${comment.body}</p>
                     `;
                 });
+
         
                 postelement.innerHTML = `
                 <h3>${post.title}</h3>
