@@ -16,6 +16,12 @@ async function getUsers() {
     return response;
 }
 
+async function getComments() {
+    let response = await fetch('https://jsonplaceholder.typicode.com/comments')
+    reposne = await reposne.json()
+    return reposne
+}
+
 function getUserByID(users, id) {
     return users.find(user => user.id == id);
 }
@@ -23,11 +29,14 @@ function getUserByID(users, id) {
 window.onload = async () => {
     const posts = await getPosts();
     const users = await getUsers();
+    const comments = await getComments()
+    
 
     const postsElement = document.getElementById("posts");
     const searchByName = document.getElementById("searchByName")
     const searchBtn = document.getElementById("searchBtn")
     const limitInput = document.getElementById("limitPosts")
+    const commentElement = document.getElementById("comments")
 
     renderPosts(posts)
 
@@ -54,6 +63,8 @@ window.onload = async () => {
                 <h3>${post.title}</h3>
                 <p>${post.body}</p>
                 <p>${user.name}</p>
+                <p>${user.email}</p>
+            
                 `;
                 postsElement.append(postelement)
             })
