@@ -59,6 +59,8 @@ window.onload = async () => {
 
                 const user = getUserByID(users, post.userId)
 
+                const postComments = comments.filter(comment => comment.postId == post.id)
+
                 postelement.innerHTML = `
                 <h3>${post.title}</h3>
                 <p>${post.body}</p>
@@ -66,6 +68,16 @@ window.onload = async () => {
                 <p>${user.email}</p>
             
                 `;
+                
+                let commentsHTML = "";
+                postComments.forEach(comment => {
+                commentsHTML += `
+                <p>${comment.name}</p>
+                <p>${comment.email}</p>
+                <p>${comment.body}</p>
+                `;
+            })
+                
                 postsElement.append(postelement)
             })
     }
